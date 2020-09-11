@@ -1,11 +1,11 @@
 server:
-  port: 8082
+  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/project
     username: root
-    password:qqq
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update

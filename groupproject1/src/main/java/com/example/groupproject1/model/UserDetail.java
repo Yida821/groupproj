@@ -1,10 +1,12 @@
 package com.example.groupproject1.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,26 +14,14 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"create_time", "update_time"},
         allowGetters = true)
-public class User implements Serializable {
-
-    @Column
-    private String role;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
+public class UserDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -49,6 +39,8 @@ public class User implements Serializable {
     @Column
     private String answer;
 
+    @Column
+    private String role;
 
    @OneToMany(fetch=FetchType.LAZY,
             mappedBy="user",
@@ -66,9 +58,9 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date update_time;*/
 
-    public User(){}
+    public UserDetail(){}
 
-    public User(String username, String password, String email, String phone, String question, String answer, String role) {
+    public UserDetail(String username, String password, String email, String phone, String question, String answer, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -77,8 +69,6 @@ public class User implements Serializable {
         this.answer = answer;
         this.role = role;
     }
-
-
 
     public int getId() {
         return id;
@@ -136,7 +126,13 @@ public class User implements Serializable {
         this.answer = answer;
     }
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
    public List<Project> getProjects() {
         return projects;

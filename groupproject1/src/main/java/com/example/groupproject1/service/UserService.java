@@ -12,5 +12,4 @@ public interface UserService {
     User updateUser(User user);
     List<User> findAll();
     void deleteById(int id);
-    String findRoleByUserName(String user_name);
 }

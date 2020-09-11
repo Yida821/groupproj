@@ -1,6 +1,6 @@
 package com.example.groupproject1.filters;
 
-import com.example.groupproject1.security.JwtUtil.JwtUtil;
+import com.example.groupproject1.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,7 +36,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         super.doFilterInternal(request, response, chain);
     }
 
-   //get token create token
+    //get token create token
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
         String token = tokenHeader.replace(JwtUtil.TOKEN_PREFIX, "");
         String username = JwtUtil.getUsername(token);
